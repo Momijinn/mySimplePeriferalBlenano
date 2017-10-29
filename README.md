@@ -1,0 +1,2 @@
+# SampleBlenano2BlePeripheral
+Blenano2をble通信のPeripheralとして使うサンプルプログラム
