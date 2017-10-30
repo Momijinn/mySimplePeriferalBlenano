@@ -1,20 +1,36 @@
-# SampleBlenano2BlePeripheral
+SampleBlenano2BlePeripheral
+====
 Blenano2をble通信のPeripheralとして使うサンプルプログラム
 
-## 環境
-Blenano2をArduino上で使用できるようにしています
+## Description
+Blenano2をble通信のPeripheralとして使用し、2秒毎ごとに6個のデータを通知しているサンプルプログラム
 
-Arduino化する方法は下記を参照
+## Requirement
+* [BLEnano2](https://www.switch-science.com/catalog/3444/)
 
-https://github.com/redbear/nRF5x/blob/master/nRF52832/docs/Arduino_Board_Package_Installation_Guide.md
+## Usage
+* mySimplePeriferalBlenano2.inoをBLEnano2に書き込むとアドバタイジングを始めます
 
-# プログラム
-Blenano2はPeripheralとして動作し、2秒毎に6つのデータ(tx_buf)を送信しています
+* 接続すると2秒毎に通知を送信します
 
 * ticker2s.attach(task_handle, 2);
 
-    attachの値変えれば更新頻度を変えることができます
+    * attachの値変えれば更新頻度を変えることができます
 
-*  ble.updateCharacteristicValue();
+* ble.updateCharacteristicValue();
 
-    Timer関数のなかにある下記のプログラムにてNotifyの更新を行っています
+    * Timer関数のなかにある下記のプログラムにてNotifyの更新を行っています
+
+## Install
+1. 下記のURLに従ってBLEnano2をArduino上で書き込めるようにする
+https://github.com/redbear/nRF5x/blob/master/nRF52832/docs/Arduino_Board_Package_Installation_Guide.md
+
+2. mySimplePeriferalBlenano2.inoをBLEnano2へ書き込む
+
+## Licence
+This software is released under the MIT License, see LICENSE.
+
+## Author
+[Twitter](https://twitter.com/momijinn_aka)
+
+[Blog](http://www.autumn-color.com/)

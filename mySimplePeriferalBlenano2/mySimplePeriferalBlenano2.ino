@@ -1,5 +1,5 @@
 #include <nRF5x_BLE_API.h>
-#define TXRX_BUF_LEN 20
+#define TXRX_BUF_LEN 5
 #define DEVICE_NAME  "MyBlePeripheral"
 
 BLE ble;
@@ -44,15 +44,12 @@ void disconnectionCallBack(const Gap::DisconnectionCallbackParams_t *params) {
 
 //Timer Task(Notify Task)
 void task_handle(void) {
-  tx_buf[0] += 1;
-  tx_buf[1] += 1;
-  tx_buf[2] += 1;
-  tx_buf[3] += 1;
-  tx_buf[4] += 1;
-  tx_buf[5] += 1;
+  for(int i=0;i<TXRX_BUF_LEN; i++){
+    tx_buf[i] += 1;
+  }
 
   //Send Notify Data
-  ble.updateCharacteristicValue(characteristic.getValueAttribute().getHandle(), tx_buf, 6);
+  ble.updateCharacteristicValue(characteristic.getValueAttribute().getHandle(), tx_buf, TXRX_BUF_LEN);
 }
 
 
@@ -99,12 +96,9 @@ void setup() {
 
 
   //Initialize Data
-  tx_buf[0] = 0;
-  tx_buf[1] = 0;
-  tx_buf[2] = 0;
-  tx_buf[3] = 0;
-  tx_buf[4] = 0;
-  tx_buf[5] = 0;
+  for(int i=0;i<TXRX_BUF_LEN; i++){
+    tx_buf[i] = 0;
+  }
 
   // Start Task
   //2 sec
