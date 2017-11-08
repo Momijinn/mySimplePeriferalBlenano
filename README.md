@@ -13,7 +13,7 @@ Blenano(Blenano2)をble通信のPeripheralとして使用し、1秒毎ごとに5
 * [BLE Nano2](https://www.switch-science.com/catalog/3444/)
 
 ## Usage
-* mySimplePeripheralBlenano.inoをBlenano2に書き込むとアドバタイジングを始めます
+* mySimplePeripheralBlenano.inoをBlenano(Blenano2)に書き込むとアドバタイジングを始めます
 
 * BlenanoとBlenano2ではインクルードするライブラリが異なるので適宜切り替える
 
