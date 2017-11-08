@@ -39,6 +39,10 @@ https://github.com/redbear/nRF5x/blob/master/nRF52832/docs/Arduino_Board_Package
 
 2. mySimplePeripheralBlenano.inoをBlenano(Blenano2)へ書き込む
 
+## Other
+以下のプログラムをダウンロードして異なるBlenanoに書き込むとBlenano間で通信をすることができます
+https://github.com/Momijinn/mySimpleCentralBlenano.git
+
 ## Licence
 This software is released under the MIT License, see LICENSE.
 
