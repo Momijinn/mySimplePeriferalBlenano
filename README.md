@@ -1,19 +1,28 @@
-SampleBlenano2BlePeripheral
+mySimplePeripheralBlenano
 ====
-Blenano2をble通信のPeripheralとして使うサンプルプログラム
+Blenano(Blenano2)をble通信のPeripheralとして使うサンプルプログラム
 
 ## Description
-Blenano2をble通信のPeripheralとして使用し、2秒毎ごとに6個のデータを通知しているサンプルプログラム
+Blenano(Blenano2)をble通信のPeripheralとして使用し、1秒毎ごとに5個のデータを通知しているサンプルプログラム
 
 ## Requirement
-* [BLEnano2](https://www.switch-science.com/catalog/3444/)
+* [BLE Nano](http://amzn.to/2zlJwvZ)
+
+    or
+
+* [BLE Nano2](https://www.switch-science.com/catalog/3444/)
 
 ## Usage
-* mySimplePeriferalBlenano2.inoをBLEnano2に書き込むとアドバタイジングを始めます
+* mySimplePeripheralBlenano.inoをBlenano2に書き込むとアドバタイジングを始めます
 
-* 接続すると2秒毎に通知を送信します
+* BlenanoとBlenano2ではインクルードするライブラリが異なるので適宜切り替える
 
-* ticker2s.attach(task_handle, 2);
+    * Blenano: #include <BLE_API.h>
+    * Blenano2: #include <nRF5x_BLE_API.h>
+
+* 接続すると1秒毎に通知を送信します
+
+* ticker.attach(task_handle, 1);
 
     * attachの値変えれば更新頻度を変えることができます
 
@@ -22,10 +31,13 @@ Blenano2をble通信のPeripheralとして使用し、2秒毎ごとに6個のデ
     * Timer関数のなかにある下記のプログラムにてNotifyの更新を行っています
 
 ## Install
-1. 下記のURLに従ってBLEnano2をArduino上で書き込めるようにする
+1. 下記のURLに従ってBlenano2をArduino上で書き込めるようにする
 https://github.com/redbear/nRF5x/blob/master/nRF52832/docs/Arduino_Board_Package_Installation_Guide.md
 
-2. mySimplePeriferalBlenano2.inoをBLEnano2へ書き込む
+    Blenano1の場合は下記のURLに従って書き込めるようにする
+    https://github.com/redbear/nRF5x/tree/master/nRF51822/arduino
+
+2. mySimplePeripheralBlenano.inoをBlenano(Blenano2)へ書き込む
 
 ## Licence
 This software is released under the MIT License, see LICENSE.

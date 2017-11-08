@@ -1,11 +1,17 @@
+//BLE nano1
+// #include <BLE_API.h>
+
+//BLE nano 2
 #include <nRF5x_BLE_API.h>
+
+
 #define TXRX_BUF_LEN 5
 #define DEVICE_NAME  "MyBlePeripheral"
 
 BLE ble;
 
 //Timer
-Ticker ticker2s;
+Ticker ticker;
 
 //データの格納する配列
 //uint8_t = 0~255
@@ -48,7 +54,7 @@ void task_handle(void) {
     tx_buf[i] += 1;
   }
 
-  //Send Notify Data
+  //Change Notify Data
   ble.updateCharacteristicValue(characteristic.getValueAttribute().getHandle(), tx_buf, TXRX_BUF_LEN);
 }
 
@@ -56,8 +62,6 @@ void task_handle(void) {
 void SetAdvertisement(){
   // A list of Advertising Data types commonly used by peripherals.
   ble.accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED | GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
-  // Add short name to advertisement
-  ble.accumulateAdvertisingPayload(GapAdvertisingData::SHORTENED_LOCAL_NAME,(const uint8_t *)"TXRX", sizeof("TXRX") - 1);
   // Add complete 128bit_uuid to advertisement
   ble.accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LIST_128BIT_SERVICE_IDS,(const uint8_t *)uart_base_uuid_rev, sizeof(uart_base_uuid_rev));
   // Add complete device name to scan response data
@@ -65,7 +69,7 @@ void SetAdvertisement(){
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   //BLE設定
   ble.init();
@@ -90,10 +94,6 @@ void setup() {
   // start advertising
   ble.startAdvertising();
 
-  // ger BLE stack version
-  Serial.print("BLE stack verison is : ");
-  Serial.println(ble.getVersion());
-
 
   //Initialize Data
   for(int i=0;i<TXRX_BUF_LEN; i++){
@@ -101,8 +101,7 @@ void setup() {
   }
 
   // Start Task
-  //2 sec
-  ticker2s.attach(task_handle, 2);
+  ticker.attach(task_handle, 1);
 }
 
 void loop() {
